@@ -6,7 +6,7 @@
 <div class="flex justify-center items-center h-screen">
     <div class="max-w-md w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h1 class="text-3xl font-semibold mb-4 text-center">Ajouter un article</h1>
-        <form method="POST" action="{{ route('articles.save') }}" class="space-y-4">
+        <form method="POST" action="{{ route('articles.store') }}" class="space-y-4">
             @csrf
             <div>
                 <label for="author" class="block font-semibold">Auteur :</label>

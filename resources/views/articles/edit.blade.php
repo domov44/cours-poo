@@ -6,7 +6,7 @@
 <div class="flex justify-center items-center h-screen">
     <div class="max-w-md w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h1 class="text-3xl font-semibold mb-4 text-center">Modifier l'article {{ $article->title }}</h1>
-        <form action="{{ route('articles.update', ['id' => $article->id]) }}" method="POST">
+        <form action="{{ route('articles.update', ['article' => $article->id]) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-4">
