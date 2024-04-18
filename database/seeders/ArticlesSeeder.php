@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class ArticlesSeeder extends Seeder
 {
@@ -15,10 +14,13 @@ class ArticlesSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
+        $userIds = DB::table('users')->pluck('id')->toArray();
+
+        $userId = $faker->randomElement($userIds);
         DB::table('articles')->insert([
             'title' => $faker->sentence,
             'content' => $faker->paragraph(5),
-            'author' => $faker->name,
+            'user_id' => $userId,
         ]);
     }
 }
