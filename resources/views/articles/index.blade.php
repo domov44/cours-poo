@@ -9,8 +9,14 @@
     @foreach($articles as $article)
         <div class="article">
             <h2>{{ $article->title }}</h2>
-            <p>{{ $article->content }}</p>
             <p>{{ $article->author }}</p>
+            <p>{{ $article->content }}</p>
+            <form action="{{ route('articles.delete', ['id' => $article->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Supprimer</button>
+                <a href="{{ route('articles.edit', ['id' => $article->id]) }}">Modifier</a>
+            </form>
         </div>
     @endforeach
 </body>

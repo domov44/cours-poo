@@ -13,6 +13,31 @@ class BlogController extends Controller
         return view('articles.index', compact('articles'));
     }
 
+    public function delete($id)
+    {
+        $article = Article::find($id);
+        if ($article) {
+            $article->delete();
+        }
+        return redirect()->route('articles.index')->with('success', 'Article supprimé avec succès.');
+    }
+
+    public function edit($id)
+    {
+        $article = Article::find($id);
+        return view('articles.edit', compact('article'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $article = Article::find($id);
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
+        $article->author = $request->input('author');
+        $article->save();
+        return redirect()->route('articles.index')->with('success', 'Article mis à jour avec succès.');
+    }
+
     public function create()
     {
         return view('articles.create');
