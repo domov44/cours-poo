@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Articles</h1>
+    <a href="/articles/creer">Ajouter un article</a>
     @foreach($articles as $article)
         <div class="article">
             <h2>{{ $article->title }}</h2>
