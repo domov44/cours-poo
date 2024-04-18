@@ -4,7 +4,7 @@
     <title>Modifier l'article</title>
 </head>
 <body>
-    <h1>Modifier l'article  $article->title</h1>
+    <h1>Modifier l'article  {{ $article->title }}</h1>
     <form action="{{ route('articles.update', ['id' => $article->id]) }}" method="POST">
         @csrf
         @method('PUT')
