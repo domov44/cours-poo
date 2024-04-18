@@ -17,6 +17,7 @@
                 <tr class="bg-gray-200">
                     <th class="px-4 py-2">Titre</th>
                     <th class="px-4 py-2">Auteur</th>
+                    <th class="px-4 py-2">Catégorie</th>
                     <th class="px-4 py-2">Contenu</th>
                     <th class="px-4 py-2">Actions</th>
                 </tr>
@@ -24,8 +25,9 @@
             <tbody>
                 @foreach($articles as $article)
                 <tr>
-                    <td class="border px-4 py-2"><a href="{{ route('articles.show', ['article' => $article->id]) }}" class="text-blue-500 hover:text-blue-600 font-semibold ml-4">{{ $article->title }}</a></td>
-                    <td class="border px-4 py-2">{{ $article->author }}</td>
+                    <td class="border px-4 py-2"><a href="{{ route('articles.show', $article->id) }}" class="text-blue-500 hover:text-blue-600 font-semibold ml-4">{{ $article->title }}</a></td>
+                    <td class="border px-4 py-2">{{ $article->user_id }}</td>
+                    <td class="border px-4 py-2">{{ $article->categorie_id }}</td>
                     <td class="border px-4 py-2">{{ $article->content }}</td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded inline-block">Modifier</a>

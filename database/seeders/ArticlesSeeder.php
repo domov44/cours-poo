@@ -15,12 +15,15 @@ class ArticlesSeeder extends Seeder
     {
         $faker = Faker::create();
         $userIds = DB::table('users')->pluck('id')->toArray();
+        $categorieIds = DB::table('categories')->pluck('id')->toArray();
 
         $userId = $faker->randomElement($userIds);
+        $categorieId = $faker->randomElement($categorieIds);
         DB::table('articles')->insert([
             'title' => $faker->sentence,
             'content' => $faker->paragraph(5),
             'user_id' => $userId,
+            'categorie_id' => $categorieId,
         ]);
     }
 }
