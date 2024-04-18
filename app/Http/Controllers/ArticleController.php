@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 
 class ArticleController extends Controller
 {
@@ -15,21 +17,26 @@ class ArticleController extends Controller
 
     public function create()
     {
-        return view('articles.create');
+        $categories = Category::all();
+        return view('articles.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'author' => 'required',
             'title' => 'required',
             'content' => 'required',
+            'category_id' => 'required',
         ]);
 
+        $userId = Auth::id();
+
         Article::create([
-            'author' => $request->input('author'),
             'title' => $request->input('title'),
             'content' => $request->input('content'),
+            'user_id' => $userId,
+            'category_id' => $request->input('category_id'),
         ]);
 
         return redirect()->route('articles.index')->with('success', 'Article créé avec succès.');
@@ -44,7 +51,6 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'author' => 'required',
             'title' => 'required',
             'content' => 'required',
         ]);
@@ -55,7 +61,6 @@ class ArticleController extends Controller
         }
 
         $article->update([
-            'author' => $request->input('author'),
             'title' => $request->input('title'),
             'content' => $request->input('content'),
         ]);

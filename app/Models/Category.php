@@ -12,4 +12,9 @@ class Category extends Model
     protected $fillable = [
         'label'
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

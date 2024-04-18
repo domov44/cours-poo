@@ -26,8 +26,8 @@
                 @foreach($articles as $article)
                 <tr>
                     <td class="border px-4 py-2"><a href="{{ route('articles.show', $article->id) }}" class="text-blue-500 hover:text-blue-600 font-semibold ml-4">{{ $article->title }}</a></td>
-                    <td class="border px-4 py-2">{{ $article->user_id }}</td>
-                    <td class="border px-4 py-2">{{ $article->categorie_id }}</td>
+                    <td class="border px-4 py-2">{{ $article->user->name }}</td>
+                    <td class="border px-4 py-2">{{ $article->category->label }}</td>
                     <td class="border px-4 py-2">{{ $article->content }}</td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded inline-block">Modifier</a>
