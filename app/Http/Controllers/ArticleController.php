@@ -60,6 +60,10 @@ class ArticleController extends Controller
             return redirect()->route('articles.index')->with('error', 'Article non trouvé.');
         }
 
+        if ($article->user_id !== Auth::id()) {
+            return redirect()->route('articles.index')->with('error', 'Vous n\'êtes pas autorisé à modifier cet article.');
+        }
+
         $article->update([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
@@ -71,10 +75,16 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
-        if ($article) {
-            $article->delete();
+        if (!$article) {
+            return redirect()->route('profile.articles')->with('error', 'Article non trouvé.');
         }
-        return redirect()->route('articles.index')->with('success', 'Article supprimé avec succès.');
+
+        if ($article->user_id !== Auth::id()) {
+            return redirect()->route('profile.articles')->with('error', 'Vous n\'êtes pas autorisé à supprimer cet article.');
+        }
+
+        $article->delete();
+        return redirect()->route('profile.articles')->with('success', 'Article supprimé avec succès.');
     }
 
     public function show($id)

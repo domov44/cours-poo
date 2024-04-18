@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Article;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,4 +58,15 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    /**
+     * Display the user's articles.
+     */
+    public function articles(): View
+    {
+        $user = Auth::user();
+        $articles = $user->articles;
+        return view('profile.articles', compact('articles'));
+    }
 }
+
