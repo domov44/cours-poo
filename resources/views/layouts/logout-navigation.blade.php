@@ -5,19 +5,19 @@
             <div class="flex items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('articles.index') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                        Le blog
                     </x-nav-link>
                 </div>
             </div>
-            
+
             <!-- Connect Button -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-1.5 border border-transparent text-sm leading-5 font-medium rounded-full text-indigo-600 bg-white hover:text-white hover:bg-indigo-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
@@ -40,8 +40,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                Le blog
             </x-responsive-nav-link>
         </div>
 

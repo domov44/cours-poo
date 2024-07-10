@@ -22,9 +22,9 @@ $layout = Auth::check() ? 'app-layout' : 'logout-layout';
             </div>
             @endif
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-6">
                 @foreach($articles as $article)
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-48 object-cover object-center">
                     <div class="p-6">
                         <div class="mb-4">

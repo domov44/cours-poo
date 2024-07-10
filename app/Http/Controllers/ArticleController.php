@@ -39,7 +39,7 @@ class ArticleController extends Controller
             'category_id' => $request->input('category_id'),
         ]);
 
-        return redirect()->route('articles.index')->with('success', 'Article créé avec succès.');
+        return redirect()->route('profile.articles')->with('success', 'Article créé avec succès.');
     }
 
     public function edit($id)
@@ -69,7 +69,7 @@ class ArticleController extends Controller
             'content' => $request->input('content'),
         ]);
 
-        return redirect()->route('articles.index')->with('success', 'Article mis à jour avec succès.');
+        return redirect()->route('profile.articles')->with('success', 'Article mis à jour avec succès.');
     }
 
     public function destroy($id)

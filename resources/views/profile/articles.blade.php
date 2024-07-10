@@ -32,8 +32,8 @@
                         @foreach($articles as $article)
                         <tr>
                             <td class="border px-4 py-2"><a href="{{ route('articles.show', $article->id) }}" class="text-blue-500 hover:text-blue-600 font-semibold ml-4">{{ $article->title }}</a></td>
-                            <td class="border px-4 py-2">{{ $article->user->name }}</td>
-                            <td class="border px-4 py-2">{{ $article->category->label }}</td>
+                            <td class="border px-4 py-2"><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $article->user->name }}</span></td>
+                            <td class="border px-4 py-2"><span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2">{{ $article->category->label }}</span></td>
                             <td class="border px-4 py-2">
                                 <a href="{{ route('articles.edit', $article->id) }}" class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded inline-block">Modifier</a>
                                 <form action="{{ route('articles.destroy', $article->id) }}" method="POST" class="inline">
