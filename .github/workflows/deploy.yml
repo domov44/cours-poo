@@ -1,4 +1,4 @@
-name: Deploy to production
+name: Deploy to Production
 
 on:
   push:
@@ -7,20 +7,31 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
           tools: composer:v2
           coverage: none
-      - name: Require Vapor CLI
-        run: composer global require laravel/vapor-cli
-      - name: Install Project Dependencies
+
+      - name: Install Composer Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install Vapor CLI
+        env:
+          COMPOSER_ALLOW_SUPERUSER: 1
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+        run: |
+          composer global require laravel/vapor-cli
+          export PATH="$HOME/.composer/vendor/bin:$PATH"
+          vapor login --token $VAPOR_API_TOKEN
+
       - name: Deploy Environment
-        run: vapor deploy
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+        run: vapor deploy production
