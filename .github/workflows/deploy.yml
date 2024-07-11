@@ -16,13 +16,29 @@ jobs:
           php-version: 8.2
           tools: composer:v2
           coverage: none
+
       - name: Require Vapor CLI
         run: composer global require laravel/vapor-cli
+
       - name: Install Project Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
-      - name: Vapor auth
-        run: vapor login
+
+      - name: Vapor Auth
+        env:
+          VAPOR_EMAIL: ${{ secrets.VAPOR_EMAIL }}
+          VAPOR_PASSWORD: ${{ secrets.VAPOR_PASSWORD }}
+        run: |
+          expect <<EOF
+          spawn vapor login
+          expect "Email Address:"
+          send "$VAPOR_EMAIL\r"
+          expect "Password:"
+          send "$VAPOR_PASSWORD\r"
+          expect eof
+          EOF
+
       - name: Deploy Environment
-        run: vapor deploy
+        run: vapor deploy production
+
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
