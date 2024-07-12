@@ -27,7 +27,7 @@ jobs:
         env:
           VAPOR_EMAIL: ${{ secrets.VAPOR_EMAIL }}
           VAPOR_PASSWORD: ${{ secrets.VAPOR_PASSWORD }}
-        run: EMAIL=${{ secrets.VAPOR_EMAIL }} PASSWORD=${{ secrets.VAPOR_PASSWORD }} vapor login
+        run: Email Address=${{ secrets.VAPOR_EMAIL }} password=${{ secrets.VAPOR_PASSWORD }} vapor login
 
       - name: Deploy Environment
         run: vapor deploy production
