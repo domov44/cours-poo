@@ -17,6 +17,19 @@ jobs:
           php-version: 8.2
           tools: composer:v2
           coverage: none
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.10'
+  
+      - name: Install Node.js Dependencies
+        run: npm install
+        working-directory: ./
+  
+      - name: Build Assets with Vite
+        run: npm run build
+        working-directory: ./ 
 
       - name: Require Vapor CLI
         run: composer global require laravel/vapor-cli
